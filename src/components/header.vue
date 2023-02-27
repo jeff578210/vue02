@@ -4,11 +4,11 @@
       <button @click="hamburgerdiv" class="hamburger" :style="{'display':(changeHurberger?'block':'none')}"><b>{{hamburgerdiv1?'三':'X'}}</b></button>
       <div id="div1" :class="[changeHurberger?hamburgerdiv1?'d-flex flex-column HurburgerA':'d-flex flex-column show':'nav d-flex justify-content-center']"
        >
-          <a class="aa" href="#">品牌故事</a>
-          <a class="aa" href="#">門市資訊</a>
-          <a class="aa" href="#">最新消息</a>
-          <a class="aa" href="#">商品總覽</a>
-          <a class="aa" href="#">咖啡豆介紹</a>
+          <a :class="[btn1?'aa aa2':'aa ']" id="品牌" @click="aaclick" href="#">品牌故事</a>
+          <a :class="[btn2?'aa aa2':'aa ']" id="門市" @click="aaclick" href="#">門市資訊</a>
+          <a :class="[btn3?'aa aa2':'aa ']" id="最新" @click="aaclick" href="#">最新消息</a>
+          <a :class="[btn4?'aa aa2':'aa ']" id="商品" @click="aaclick" href="#">商品總覽</a>
+          <a :class="[btn5?'aa aa2':'aa ']" id="咖啡豆" @click="aaclick" href="#">咖啡豆介紹</a>
       </div>
     </div>
   </div>
@@ -37,6 +37,52 @@ watchEffect(() => {
 const hamburgerdiv1 = ref(true);
 const hamburgerdiv=()=>{
   hamburgerdiv1.value=!hamburgerdiv1.value;
+}
+// =================================================
+// 點擊導覽列
+const btn1 = ref(false);
+const btn2 = ref(false);
+const btn3 = ref(false);
+const btn4 = ref(false);
+const btn5 = ref(false);
+const aaclick =(event)=>{
+  switch (event.target.id) {
+  case '品牌':
+        btn1.value=true;
+        btn2.value=false;
+        btn3.value=false;
+        btn4.value=false;
+        btn5.value=false;
+    break;
+  case '門市':
+        btn1.value=false;
+        btn2.value=true;
+        btn3.value=false;
+        btn4.value=false;
+        btn5.value=false;
+    break;
+  case '最新':
+        btn1.value=false;
+        btn2.value=false;
+        btn3.value=true;
+        btn4.value=false;
+        btn5.value=false;
+    break;
+  case '商品':
+        btn1.value=false;
+        btn2.value=false;
+        btn3.value=false;
+        btn4.value=true;
+        btn5.value=false;
+    break;
+  case '咖啡豆':
+        btn1.value=false;
+        btn2.value=false;
+        btn3.value=false;
+        btn4.value=false;
+        btn5.value=true;
+    break;
+}
 }
 // =================================================
 </script>
@@ -124,5 +170,24 @@ const hamburgerdiv=()=>{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.aa2::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: red;
+  bottom: 0px;
+  left: 0px;
+}
+.aa2::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 0, 0,0.5);
+  bottom: 0px;
+  right: 0px;
+  opacity: 1;
 }
 </style>

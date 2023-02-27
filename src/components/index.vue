@@ -13,6 +13,16 @@ onMounted(() => {
   window.addEventListener("resize", function () {
     windowWidth.value = window.innerWidth;
   });
+  // 監聽Y軸滾輪
+  window.addEventListener("scroll", function () {
+    var stop = document.body.scrollTop + document.documentElement.scrollTop;
+    if (stop > 100) {
+      document.getElementById("up").style.display = 'block';
+      }
+    else {
+      document.getElementById("up").style.display = 'none';
+      }
+  });
 });
 const windowWidth = ref(window.innerWidth);
 watchEffect(() => {
@@ -50,11 +60,11 @@ watchEffect(() => {
       <div class="wordDivRight">
         <div style="color: #c9c9c9;margin:0 0 1% 0 ;font-size: 0.8em;">體驗</div>
         <div style="color: #ccaf00;margin:0 0 5% 0 ;font-size: 1.5em;">精湛手藝</div>
-        <div style="font-size: 1em;">
+        <div style="font-size: 1em;margin-bottom:20px">
           無論是法式甜點、歐式麵包或任一款商品，皆是我們的主廚悉心打造的藝術，
           每一季不斷地讓您享受味覺體驗。
         </div>
-        <button class="button1">更多商品</button>
+          <a href="/product" target="_blank" class="button1">更多商品</a>
       </div>
     </div>
     <div v-if="!change" :class="[change?'col-12':'col-7']" style="padding: 0">
@@ -86,11 +96,11 @@ watchEffect(() => {
       <div class="wordDivRight">
         <div style="color: #c9c9c9;margin:0 0 1% 0 ;font-size: 0.8em;">探究</div>
         <div style="color: #ccaf00;margin:0 0 5% 0 ;font-size: 1.5em;">純萃美好</div>
-        <div style="font-size: 1em;">
+        <div style="font-size: 1em;margin-bottom:20px">
           我們致力於提供有別於傳統咖啡館的消費體驗，注重咖啡師與顧客之間的互動，
           並提供我們心目中最完美的一杯咖啡，讓您也被咖啡文化的氛圍感動。
         </div>
-        <button class="button1">更多商品</button>
+        <a href="/product" target="_blank" class="button1">更多商品</a>
       </div>
     </div>
     <div v-if="!change" :class="[change?'col-12':'col-7']" style="padding: 0">
@@ -99,6 +109,14 @@ watchEffect(() => {
     
     
   </div>
+  <div class="row">
+    <div class="col">
+      練習用網頁參考網址:<a href="https://www.caffaina.com/">https://www.caffaina.com/</a>
+    </div>
+  </div>
+    <div class="backTop" id="up" style="display:none">
+      <a href="javascript:window.scrollTo(0,0)" class="backTopa">^</a>
+    </div>
 </div>
 </template>
 
@@ -112,12 +130,12 @@ watchEffect(() => {
 }
 .imgg {
   width: 100%;
-  height: auto;
+  height: 100%;
   min-height: 270px;
   object-fit: cover;
 }
 .wordDivRight {
-  padding: 10% 10% 0px 10%;
+  padding: 10% 10% 10% 10%;
   text-align:Right;
 }
 .wordDivLeft {
@@ -135,6 +153,33 @@ watchEffect(() => {
     max-width: 100px;
     max-height: 35px;
     align-items: center;
-    margin-top: 20px;
+    text-decoration:none;
+    outline: none;
+    color: #000;
+}
+.button1:hover{
+  color: black;
+}
+.backTop{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(0, 0, 0,0.5);
+}
+.backTopa{
+  width: 100%;
+  height: 100%;
+  text-decoration:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.backTopa:hover{
+  text-decoration:none;
+  color: white;
 }
 </style>
